@@ -1,0 +1,27 @@
+name: Build KLUTCH 11 VOXSHIFT
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure project
+        run: cmake -B build -S . -A x64
+
+      - name: Build VST3
+        run: cmake --build build --config Release --parallel 2
+
+      - name: Upload VST3
+        uses: actions/upload-artifact@v4
+        with:
+          name: KLUTCH-11-VOXSHIFT
+          path: build/KLUTCH11VOXSHIFT_artefacts/Release/VST3/KLUTCH 11 VOXSHIFT.vst3
+          if-no-files-found: error
