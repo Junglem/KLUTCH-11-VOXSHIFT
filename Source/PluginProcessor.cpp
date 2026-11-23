@@ -94,6 +94,15 @@ void VoxShiftAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBloc
     pitchDelay.reset();
 }
 
+void VoxShiftAudioProcessor::releaseResources()
+{
+    reverb.reset();
+    echoDelay.reset();
+    pitchDelay.reset();
+    filterLeft.reset();
+    filterRight.reset();
+}
+
 juce::AudioProcessorEditor* VoxShiftAudioProcessor::createEditor()
 {
     return new VoxShiftAudioProcessorEditor(*this);
