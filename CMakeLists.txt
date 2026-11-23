@@ -35,7 +35,9 @@ target_sources(KLUTCH11VOXSHIFT PRIVATE
     Source/PluginEditor.cpp
 )
 
-target_compile_features(KLUTCH11VOXSHIFT PRIVATE cxx_std_17)
+target_compile_definitions(KLUTCH11VOXSHIFT PRIVATE
+    JUCE_VST3_CAN_REPLACE_VST2=0
+)
 
 target_link_libraries(KLUTCH11VOXSHIFT PRIVATE
     juce::juce_audio_utils
