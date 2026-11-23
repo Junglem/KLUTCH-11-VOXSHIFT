@@ -94,8 +94,9 @@ void VoxShiftAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBloc
     pitchDelay.reset();
 }
 
-void VoxShiftAudioProcessor::releaseResources()
+juce::AudioProcessorEditor* VoxShiftAudioProcessor::createEditor()
 {
+    return new VoxShiftAudioProcessorEditor(*this);
 }
 
 void VoxShiftAudioProcessor::processBlock(
